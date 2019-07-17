@@ -1,3 +1,7 @@
-# Build and test an application using Cypress
+# Simple Cypress practice
 
-This repository is the starting point for an official Cypress tutorial. We encourage you to clone this repo and follow along.
+1. npm install
+2. npm run dev
+3. npm run cypress
+4. run your test
+
