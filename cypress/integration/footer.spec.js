@@ -1,36 +1,29 @@
 describe('Footer', () => {
-  context('with a single todo', () => {
-    it('displays a singular todo in count', () => {
-      cy.seedAndVisit([{id: 1, name: 'Buy milk', isComplete: false}])
+  context('with a single note', () => {
+    it('displays 0 note in count', () => {
+      cy.seedAndVisit([])
       cy.get('.todo-count')
-        .should('contain', '1 todo left')
+        .should('contain', 'no')
+    })
+
+
+    it('displays 1 note in count', () => {
+      cy.seedAndVisit([{id: 1, name: 'Note 1', isComplete: false}])
+      cy.get('.todo-count')
+        .should('contain', '1 note')
     })
   })
 
-  context('with multiple todos', () => {
+  context('with multiple notes', () => {
     beforeEach(() => {
       cy.seedAndVisit()
     })
 
-    it('displays plural todos in count', () => {
+    it('displays multiple todos in count', () => {
       cy.get('.todo-count')
-        .should('contain', '3 todos left')
+        .should('contain', 'notes')
     })
 
-    it('Handles filter links', () => {
-      const filters = [
-        {link: 'Active', expectedLength: 3},
-        {link: 'Completed', expectedLength: 1},
-        {link: 'All', expectedLength: 4}
-      ]
-      cy.wrap(filters)
-        .each(filter => {
-          cy.contains(filter.link)
-          .click()
-
-          cy.get('.todo-list li')
-          .should('have.length', filter.expectedLength)
-        })
-    })
+    
   })
 })
